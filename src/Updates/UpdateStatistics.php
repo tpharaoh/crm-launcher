@@ -9,7 +9,8 @@ use Rubenwouters\CrmLauncher\Models\Configuration;
 use Rubenwouters\CrmLauncher\ApiCalls\FetchTwitterContent;
 use Rubenwouters\CrmLauncher\ApiCalls\FetchFacebookContent;
 
-class UpdateStatistics {
+class UpdateStatistics
+{
 
     /**
      * @var Rubenwouters\CrmLauncher\Models\Contact
@@ -76,7 +77,6 @@ class UpdateStatistics {
 
         foreach ($tweets as $key => $tweet) {
             if ($this->publishment->where('tweet_id', $tweet['id_str'])->exists()) {
-
                 $publishment = $this->publishment->where('tweet_id', $tweet['id_str'])->first();
                 $publishment->twitter_likes = $tweet['favorite_count'];
                 $publishment->twitter_retweets = $tweet['retweet_count'];
@@ -88,7 +88,7 @@ class UpdateStatistics {
 
     /**
      * Update stats in DB
-     * 
+     *
      * @return void
      */
     public function updateFbStats()

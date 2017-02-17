@@ -131,7 +131,6 @@ class FetchTwitterContent
 
             return false;
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-
             getErrorMessage($e->getResponse()->getStatusCode());
 
             return back();
@@ -156,7 +155,6 @@ class FetchTwitterContent
             }
 
             return false;
-
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             getErrorMessage($e->getResponse()->getStatusCode());
 
@@ -233,7 +231,6 @@ class FetchTwitterContent
                 $client->post('direct_messages/destroy.json?id=' . $answer->tweet_id);
             }
             Session::flash('flash_success', trans('crm-launcher::success.tweet_deleted'));
-
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             getErrorMessage($e->getResponse()->getStatusCode());
             return back();
@@ -255,7 +252,6 @@ class FetchTwitterContent
         try {
             $client->post('statuses/destroy/' . $answer->tweet_id . '.json');
             Session::flash('flash_success', trans('crm-launcher::success.tweet_deleted'));
-
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             getErrorMessage($e->getResponse()->getStatusCode());
             return back();

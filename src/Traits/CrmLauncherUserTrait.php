@@ -2,7 +2,7 @@
 
 namespace Rubenwouters\CrmLauncher\Traits;
 
-Trait CrmLauncherUserTrait
+trait CrmLauncherUserTrait
 {
     public function role()
     {

@@ -19,7 +19,7 @@ class CrmLauncherServiceProvider extends ServiceProvider
      * @var array
      */
     protected $aliases = [
-        'Socialite'	=> 'Laravel\Socialite\Facades\Socialite',
+        'Socialite'     => 'Laravel\Socialite\Facades\Socialite',
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
         'Input' => 'Illuminate\Support\Facades\Input',
@@ -125,7 +125,7 @@ class CrmLauncherServiceProvider extends ServiceProvider
      */
     private function registerCrons()
     {
-        $this->app->singleton('rubenwouters.crm-launcher.src.console.kernel', function($app) {
+        $this->app->singleton('rubenwouters.crm-launcher.src.console.kernel', function ($app) {
             $dispatcher = $app->make(\Illuminate\Contracts\Events\Dispatcher::class);
 
             return new \Rubenwouters\CrmLauncher\Console\Kernel($app, $dispatcher);

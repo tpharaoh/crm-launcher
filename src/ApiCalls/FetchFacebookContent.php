@@ -261,7 +261,7 @@ class FetchFacebookContent
         $token = $this->config->FbAccessToken();
 
         try {
-            $reply = $fb->post('/' . $messageId . '/comments?message=' . rawurlencode($answer), array('access_token' => $token));
+            $reply = $fb->post('/' . $messageId . '/comments?message=' . rawurlencode($answer), ['access_token' => $token]);
             Session::flash('flash_success', trans('crm-launcher::success.post_sent'));
             return json_decode($reply->getBody());
         } catch (Exception $e) {
@@ -284,7 +284,7 @@ class FetchFacebookContent
         $token = $this->config->FbAccessToken();
 
         try {
-            $reply = $fb->post('/' . $conversation->fb_conversation_id . '/messages?message=' . rawurlencode($answer), array('access_token' => $token));
+            $reply = $fb->post('/' . $conversation->fb_conversation_id . '/messages?message=' . rawurlencode($answer), ['access_token' => $token]);
             $reply = json_decode($reply->getBody());
             Session::flash('flash_success', trans('crm-launcher::success.message_sent'));
 

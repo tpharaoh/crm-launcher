@@ -135,7 +135,8 @@ function isConfigured()
  * Check if user still needs 'help' section
  * @return boolean
  */
-function needsHelp(){
+function needsHelp()
+{
 
     if (Configuration::exists() && ! Configuration::first()->help_disabled) {
         return true;
