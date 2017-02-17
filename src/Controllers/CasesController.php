@@ -17,7 +17,6 @@ use Rubenwouters\CrmLauncher\ApiCalls\FetchTwitterContent;
 use Rubenwouters\CrmLauncher\ApiCalls\FetchFacebookContent;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
-
 class CasesController extends Controller
 {
     use ValidatesRequests;
@@ -385,7 +384,6 @@ class CasesController extends Controller
         $message = new Message();
 
         if (isTwitterLinked()) {
-
             $mentionId = $this->twitterContent->newestMentionId();
             $directId = $this->twitterContent->newestDirectId();
 
@@ -398,7 +396,6 @@ class CasesController extends Controller
         }
 
         if (isFacebookLinked()) {
-
             $postId = $this->facebookContent->newestPostId();
             $conversationId = $this->facebookContent->newestConversationId();
             if ($postId) {
@@ -439,7 +436,7 @@ class CasesController extends Controller
             $today = date("Y-m-d", strtotime("+0 hours", strtotime($keywords)));
             $tomorrow = date("Y-m-d", strtotime("+1 day", strtotime($keywords)));
 
-            $query = $this->case->whereHas('messages', function($q) use ($today, $tomorrow) {
+            $query = $this->case->whereHas('messages', function ($q) use ($today, $tomorrow) {
                 $q->orderBy('id', 'ASC')
                     ->where('post_date', '>=', $today)
                     ->where('post_date', '<', $tomorrow);
@@ -451,7 +448,6 @@ class CasesController extends Controller
         }
 
         if (!isset($query)) {
-
             return false;
         }
 
@@ -471,7 +467,7 @@ class CasesController extends Controller
         $caseTypes = $request->input('cases');
 
         if ($caseTypes != null) {
-            $cases->where(function($q) use ($request) {
+            $cases->where(function ($q) use ($request) {
                 foreach ($request->input('cases') as $i => $value) {
                     $q->orWhere('status', $value);
                     static::$arActive[] = $value;

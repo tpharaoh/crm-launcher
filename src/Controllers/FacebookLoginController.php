@@ -71,12 +71,10 @@ class FacebookLoginController extends Controller
             }
 
             getErrorMessage('login_right_account');
-
         } catch (Exception $e) {
             getErrorMessage('permission');
             return false;
         }
-
     }
 
     /**

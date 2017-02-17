@@ -79,7 +79,6 @@ class Reaction extends Model
             $reaction->tweet_reply_id = $mention['in_reply_to_status_id_str'];
             $reaction->message = $mention['text'];
             $reaction->post_date = changeDateFormat($mention['created_at']);
-
         } else {
             $reaction->fb_post_id = $mention->id;
             

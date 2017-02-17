@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         if (Schema::hasTable('users')) {
-            Schema::table('users', function($table) {
+            Schema::table('users', function ($table) {
                 foreach ($this->fields as $field => $value) {
                     if (!Schema::hasColumn('users', $field)) {
                         $type = $value['type'];
@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
                 $table->timestamps();
             });
         } else {
-            Schema::create('users', function($table) {
+            Schema::create('users', function ($table) {
                 foreach ($this->fields as $field => $value) {
                     if (!Schema::hasColumn('users', $field)) {
                         $type = $value['type'];

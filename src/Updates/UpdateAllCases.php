@@ -14,7 +14,8 @@ use Rubenwouters\CrmLauncher\Models\Reaction;
 use Rubenwouters\CrmLauncher\ApiCalls\FetchTwitterContent;
 use Rubenwouters\CrmLauncher\ApiCalls\FetchFacebookContent;
 
-class UpdateAllCases {
+class UpdateAllCases
+{
 
     /**
      * @var Rubenwouters\CrmLauncher\Models\Contact
@@ -160,7 +161,6 @@ class UpdateAllCases {
         $mentions = array_reverse($this->twitterContent->fetchMentions());
 
         foreach ($mentions as $key => $mention) {
-
             $date = changeDateFormat($mention['created_at']);
             $inReplyTo = $mention['in_reply_to_status_id_str'];
             $message = new Message();
@@ -184,7 +184,6 @@ class UpdateAllCases {
 
                 $message->case_id = $post->case_id;
                 $case = $this->case->find($post->case_id);
-
             } else if ($inReplyTo != null && $this->publishment->where('tweet_id', $inReplyTo)->exists()) {
                 $this->fetchSpecificMention($mention);
                 continue;
@@ -313,16 +312,13 @@ class UpdateAllCases {
 
         foreach ($messages as $key => $message) {
             if ($message->fb_post_id != 0) {
-
                 $comments = $this->facebookContent->fetchComments($newest, $message);
 
                 if (!empty($comments->data)) {
                     foreach ($comments->data as $key => $comment) {
-
                         if ($comment->from->id != config('crm-launcher.facebook_credentials.facebook_page_id')
                             && (!$newest || new Datetime(changeFbDateFormat($comment->created_time)) > new Datetime($newest))
                         ) {
-
                             if ($this->contact->FindByFbId($comment->from->id)->exists()) {
                                 $contact = $this->contact->where('facebook_id', $comment->from->id)->first();
                             } else {
@@ -380,9 +376,9 @@ class UpdateAllCases {
     private function getPosts()
     {
         $collection = collect();
-        $messages = $this->message->with(['caseOverview' => function($query) {
+        $messages = $this->message->with(['caseOverview' => function ($query) {
                 $query->where('status', '!=', '2')->where('origin', 'Facebook post');
-            }])->where('fb_post_id', '!=', '')->where('fb_reply_id', '')->where('fb_private_id', '')->get();
+        }])->where('fb_post_id', '!=', '')->where('fb_reply_id', '')->where('fb_private_id', '')->get();
 
         $publishments = $this->publishment->facebookPosts();
 

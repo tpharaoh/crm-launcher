@@ -8,7 +8,8 @@ use Rubenwouters\CrmLauncher\Models\Configuration;
 use App\User;
 use Mail;
 
-class CheckActivity {
+class CheckActivity
+{
 
     /**
      * @var Rubenwouters\CrmLauncher\Models\Message

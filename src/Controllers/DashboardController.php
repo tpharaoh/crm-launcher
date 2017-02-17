@@ -67,7 +67,6 @@ class DashboardController extends Controller
     public function index()
     {
         if (!$this->config->exists() || !$this->config->first()->valid_credentials) {
-
             $data = ['validTwitterSettings' => $this->validateTwitter->validTwitterSettings()];
             return view('crm-launcher::dashboard.facebook', $data);
         }
@@ -141,12 +140,10 @@ class DashboardController extends Controller
         foreach ($cases as $key => $case) {
             foreach ($case->messages as $id => $message) {
                 if ($message->answers()->exists()) {
-
                     $postDate = new Carbon($message->post_date);
                     $answerDate = new Carbon($message->answers()->first()->post_date);
                     $waitTime = $answerDate->diffInSeconds($postDate);
                     array_push($arTime, $waitTime);
-
                 }
             }
         }
@@ -175,7 +172,6 @@ class DashboardController extends Controller
         }
 
         if ($counter > 0) {
-
             return round($counter/count($cases), 1);
         }
 
@@ -197,7 +193,6 @@ class DashboardController extends Controller
         }
 
         if ($counter > 0) {
-
             return round($counter/count($cases), 1);
         }
 
