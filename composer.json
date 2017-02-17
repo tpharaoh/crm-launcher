@@ -1,7 +1,15 @@
 {
     "name": "rubenwouters/crm-launcher",
     "description": "Manage your customer service via social media in a modern way. Every Tweet or Facebook post becomes a 'case' so you or your team can handle customer service in a clear way with easey follow-ups.",
-    "keywords": ["Laravel", "CRM", "Facebook", "Twitter", "Social media", "customer", "service"],
+    "keywords": [
+        "Laravel",
+        "CRM",
+        "Facebook",
+        "Twitter",
+        "Social media",
+        "customer",
+        "service"
+    ],
     "homepage": "http://crmlauncher.io",
     "license": "MIT",
     "authors": [
@@ -16,8 +24,9 @@
     "require": {
         "laravel/socialite": "^2.0",
         "laravelcollective/html": "5.2.*",
-        "facebook/php-sdk-v4" : "~5.0",
-        "guzzlehttp/oauth-subscriber": "0.3.*"
+        "facebook/php-sdk-v4": "~5.0",
+        "guzzlehttp/oauth-subscriber": "0.3.*",
+        "php": ">=5.6.4"
     },
     "autoload": {
         "psr-4": {
@@ -25,7 +34,7 @@
             "Rubenwouters\\CrmLauncher\\database\\": "database/"
         },
         "files": [
-           "src/helpers.php"
-       ]
-   }
+            "src/helpers.php"
+        ]
+    }
 }
